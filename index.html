@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Raphael Telepresence robot</title>
+	<link rel="stylesheet" href="css/style.css">
+
+	<link rel="stylesheet" type="text/css"
+  	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+
+	<script src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+	<script src="http://static.robotwebtools.org/keyboardteleopjs/current/keyboardteleop.js"></script>
+	<script src="http://static.robotwebtools.org/roslibjs/current/roslib.js"></script>
+
+	<script src="scripts/main.js"></script>
+
+</head>
+<body onload="init()">
+	<div class="grid-container">
+		<div class="main-control">
+			<h1>Raphael Turtlebot Teleop</h1>
+			<p>Comp50AIR project - Selena Groh, Serena Thoma, Trung Truong</p>
+			
+			
+			Turtlebot's IP Address + Port: 
+			<input type="text" id="ip"></input>
+			<input type="submit" onclick="updateIP()" value="Enter"> 
+
+			<p class="status">STATUS: </p>
+
+			<div class="control-container">
+				<div class="joystick">
+					<div class="forward">
+						<button type="button" onmouseup="forward()">Forward</button>
+					</div>
+
+					<div class="left">
+						<button type="button" onmouseup="left()">Left</button>
+					</div>
+					
+					<div class="right">
+						<button type="button" onmouseup="right()">Right</button>
+					</div>
+					
+					<div class="backward">
+						<button type="button" onmouseup="backward()">Backward</button>
+					</div>
+				</div>
+
+				<div class="speed">
+					<input type="range" min="0" max="100" value="80" class="speed" id="mySpeed">
+				</div>
+			</div>
+			<br>
+			<div class="battery">
+				Battery Level: <progress value="22" max="100"></progress>
+			</div>
+			<h3>Instructions</h3>
+				<li></li>
+				<li></li>
+				<li></li>
+
+		</div>
+		<div class="map">
+				
+		</div>
+	</div>
+</body>
+</html>
