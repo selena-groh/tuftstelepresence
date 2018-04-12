@@ -39,13 +39,30 @@ function init(){
 			ros: ros,
 			topic: '/cmd_vel_mux/input/teleop'
 		});
-      
+
+		// update the speed      
         keyboard.scale = 0.4;
+
+        // create a new map object
+         // Create the main viewer.
+	    var viewer = new ROS2D.Viewer({
+	      divID : 'map',
+	      width : 720,
+	      height : 720
+	    });
+
+	    // Setup the nav client
+	    var nav = NAV2D.OccupancyGridClientNav({
+	      ros : ros,
+	      rootObject : viewer.scene,
+	      viewer : viewer,
+	      serverName : '/move_base'
+	    });
 
 		// publish cmd topic to the turtlebot
 	    cmd = new ROSLIB.Topic({
 			ros: ros,
-			name: '/',
+			name: '/cmd_vel_mux/input/teleop',
 			messageType: 'geometry_msgs/Twist'
 		});
 	}
