@@ -20,11 +20,13 @@ function init(){
 
 		// handle exceptions
 		ros.on('connection', function(){
-
+			var status = document.getElementById("status");
+			status.innerHTML("<p id='connected'>CONNECTED</p>");
 		});
 
-		ros.on('error', function(){
-
+		ros.on('error', function(error){
+			var status = document.getElementById("status");
+			status.innerHTML("<p id='notconnected'>ERROR: NOT CONNECTED</p>");
 		});
 
 		// initiate keyboardteleop object
