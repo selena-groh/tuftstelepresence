@@ -1,71 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Raphael Telepresence robot</title>
-	<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <title>Telepresence TurtleBot</title>
+  <link rel="stylesheet" href="css/style.css">
 
-	<link rel="stylesheet" type="text/css"
-  	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
-
-	<script src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
-	<script src="http://static.robotwebtools.org/keyboardteleopjs/current/keyboardteleop.js"></script>
-	<script src="http://static.robotwebtools.org/roslibjs/current/roslib.js"></script>
-
-	<script src="scripts/main.js"></script>
-
+  <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body onload="init()">
-	<div class="grid-container">
-		<div class="main-control">
-			<h1>Raphael Turtlebot Teleop</h1>
-			<p>Comp50AIR project - Selena Groh, Serena Thoma, Trung Truong</p>
-			
-			
-			Turtlebot's IP Address + Port: 
-			<input type="text" id="ip"></input>
-			<input type="submit" onclick="updateIP()" value="Enter"> 
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Telepresence TurtleBot</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a>Comp50AIR - Selena Groh, Serena Thoma, &amp; Trung Truong - April 2018</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col" id="teleop">
+        <div>
+          <div id="connector">
+          <span>TurtleBot's IP Address and Port:&nbsp;</span>
+          
+          <input type="text" id="ip" placeholder="&lt;ip_address&gt;:&lt;port&gt;">
+          <button type="submit" onclick="updateIP()" value="Connect">Connect</button>
+          </div>
 
-			<p class="status">STATUS: </p>
+          <p id='status'><strong>STATUS: DISCONNECTED</strong></p>
 
-			<div class="control-container">
-				<div class="joystick">
-					<div class="forward">
-						<button type="button" onmouseup="forward()">Forward</button>
-					</div>
+          <div class="grid-container">
+            <div class="joystick">
+              <button id="forward" class="direction" type="button" onmouseup="forward()">Forward</button>
+              <button id="left" class="direction" type="button" onmouseup="left()">Left</button>
+              <button id="right" class="direction" type="button" onmouseup="right()">Right</button>
+              <button id="backward" class="direction" type="button" onmouseup="backward()">Backward</button>
+            </div>
+          </div>
+          <br>
+          <div class="battery">
+            <span>Battery Level: </span> <progress value="22" max="100"></progress>
+          </div>
+          <h3>Instructions</h3>
+          <ol>
+            <li>On the TurtleBot, run the following commands in separate terminals:
+              <ul>
+                <li><code>roscore</code></li>
+                <li><code>roslaunch tbot2_launch tbot2.launch</code></li>
+                <li><code>roslaunch rosbridge_server rosbridge_websocket.launch</code></li>
+              </ul>
+            </li>
+            <li>On this page, enter IP Address and Port Number in the format <code>0.0.0.0:0000</code></li>
+            <li>Click "Enter"</li>
+            <li>If the status says "CONNECTED," you have successfully connected to the TurtleBot's webserver. Else, something has gone wrong.</li>
+            <li>Key Commands:
+              <ul>
+                <li>w = forward</li>
+                <li>a = turn left</li>
+                <li>s = backward</li>
+                <li>d = turn right</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+      </div>
+      <div class="col" id="map">
+        <img src="res/2.png" alt="map of the second floor of Halligan Hall at Tufts University" width="100%">
+      </div>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
 
-					<div class="left">
-						<button type="button" onmouseup="left()">Left</button>
-					</div>
-					
-					<div class="right">
-						<button type="button" onmouseup="right()">Right</button>
-					</div>
-					
-					<div class="backward">
-						<button type="button" onmouseup="backward()">Backward</button>
-					</div>
-				</div>
+  <script src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+  <script src="http://static.robotwebtools.org/keyboardteleopjs/current/keyboardteleop.js"></script>
+  <script src="http://static.robotwebtools.org/roslibjs/current/roslib.js"></script>
 
-				<div class="speed">
-					<input type="range" min="0" max="100" value="80" class="speed" id="mySpeed">
-				</div>
-			</div>
-			<br>
-			<div class="battery">
-				Battery Level: <progress value="22" max="100"></progress>
-			</div>
-			<h3>Instructions</h3>
-				<li></li>
-				<li></li>
-				<li></li>
-
-		</div>
-		<div class="map">
-				
-		</div>
-	</div>
+  <script src="scripts/main.js"></script>
 </body>
 </html>

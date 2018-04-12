@@ -21,19 +21,26 @@ function init(){
 		// handle exceptions
 		ros.on('connection', function(){
 			var status = document.getElementById("status");
-			status.innerHTML("<p id='connected'>CONNECTED</p>");
+			status.innerHTML = "<p id='status' style='color:green;'><strong>STATUS: CONNECTED</strong></p>";
 		});
 
 		ros.on('error', function(error){
 			var status = document.getElementById("status");
-			status.innerHTML("<p id='notconnected'>ERROR: NOT CONNECTED</p>");
+			status.innerHTML = "<p id='status' style='color:red;'><strong>ERROR: FAILED TO CONNECT</strong></p>";
 		});
+      
+        ros.on('close', function(){
+            var status = document.getElementById("status");
+			status.innerHTML = "<p id='status' style='color:red;'><strong>STATUS: DISCONNECTED</strong></p>";
+        })
 
 		// initiate keyboardteleop object
 		keyboard = new KEYBOARDTELEOP.Teleop({
 			ros: ros,
 			topic: '/cmd_vel_mux/input/teleop'
 		});
+      
+        keyboard.scale = 0.4;
 
 		// publish cmd topic to the turtlebot
 	    cmd = new ROSLIB.Topic({
