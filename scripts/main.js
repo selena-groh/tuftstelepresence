@@ -43,8 +43,21 @@ function init(){
 		// update the speed      
         keyboard.scale = 0.4;
 
+        // battery indicator
+        var battery = new ROSLIB.Topic({
+  	    	ros : ros,
+  	     	name : '/mobile_base/sensors/core',
+  	     	messageType : 'kobuki_msgs/SensorState'
+  	   	});
+   
+    	battery.subscribe(function(message) {
+    		$('#battery').val(message.battery/165 * 100);
+    		$('#level').html("Battery Level: " + Math.floor(message.battery/165 * 100) + "%");
+      		battery.unsubscribe();
+     	});
+  
         // create a new map object
-         // Create the main viewer.
+        // Create the main viewer.
 	    var viewer = new ROS2D.Viewer({
 	      divID : 'map',
 	      width : 720,
@@ -67,72 +80,3 @@ function init(){
 		});
 	}
 }
-
-// move turtlebot forward
-function forward(){
-	var twist = new ROSLIB.Message({
-		linear: {
-			x: 0,
-			y: 0,
-			z: 0 
-		}, 
-		angular: {
-			x: 0,
-			y: 0, 
-			z: 0
-		}
-	});
-	cmd.publish(twist);
-}
-
-// move turtlebot backward
-function backward(){
-	var twist = new ROSLIB.Message({
-		linear: {
-			x: 0,
-			y: 0,
-			z: 0 
-		}, 
-		angular: {
-			x: 0,
-			y: 0, 
-			z: 0
-		}
-	});
-	cmd.publish(twist);
-}
-
-// move turtlebot left
-function left(){
-	var twist = new ROSLIB.Message({
-		linear: {
-			x: 0,
-			y: 0,
-			z: 0 
-		}, 
-		angular: {
-			x: 0,
-			y: 0, 
-			z: 0
-		}
-	});
-	cmd.publish(twist);
-}
-
-// move turtlebot right
-function right(){
-	var twist = new ROSLIB.Message({
-		linear: {
-			x: 0,
-			y: 0,
-			z: 0 
-		}, 
-		angular: {
-			x: 0,
-			y: 0, 
-			z: 0
-		}
-	});
-	cmd.publish(twist);
-}
-
