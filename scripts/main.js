@@ -5,7 +5,7 @@ var ip;
 
 function init() {
   'use strict';
-  var ros, keyboard, viewer, nav;
+  var ros, keyboard, battery, viewer, nav;
   
   if (connect) {
 
@@ -42,6 +42,20 @@ function init() {
     // hide the "no map loaded" message
     document.getElementById('no-map-loaded').style.display = 'none';
 
+    // battery indicator
+    battery = new ROSLIB.Topic({
+      ros : ros,
+      name : '/mobile_base/sensors/core',
+      messageType : 'kobuki_msgs/SensorState'
+    });
+
+    battery.subscribe(function(message) {
+      var batteryLevel = message.battery/165 * 100;
+      $('#battery').width(batteryLevel.toString() + '%');
+      $('#battery').html(Math.floor(batteryLevel.toString() + "%"));
+      battery.unsubscribe();
+    });
+    
     // create a new map object
     // Create the main viewer.
     viewer = new ROS2D.Viewer({
