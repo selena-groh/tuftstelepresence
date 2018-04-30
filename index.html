@@ -37,7 +37,7 @@
           </div>
           <h2>TurtleBot Status</h2>
           <p id='status'><strong>STATUS: DISCONNECTED</strong></p>
-          <div id="battery" style="display: none">
+          <div id="battery-indicator" style="display: none">
             <span id='level'>Battery Level: </span>
             <div class="progress">
               <div class="progress-bar" id='battery' role="progressbar" style="width:0%"></div>
@@ -58,7 +58,11 @@
                 <li><code>rosrun robot_pose_publisher robot_pose_publisher</code></li>
               </ul>
             </li>
-            <li><strong>On this webpage</strong>, enter IP Address and Port Number in the format <code>0.0.0.0:0000</code>. Default port is <code>9090</code>.</li>
+            <li><strong>On this webpage</strong>, enter IP Address and Port Number in the format <code>0.0.0.0:0000</code>. Default port is <code>9090</code>.
+              <ul>
+                <li>If this doesn't connect, try navigating to https://ip:port/</li>
+              </ul>
+            </li>
             <li>Click "Connect".</li>
             <li>If the status says "CONNECTED," you have successfully connected to the TurtleBot's webserver. Else, something has gone wrong.</li>
           </ol>

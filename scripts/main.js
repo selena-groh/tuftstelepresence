@@ -41,7 +41,7 @@ function init() {
 
     // hide the "no map loaded" message
     document.getElementById('no-map-loaded').style.display = 'none';
-    document.getElementById('battery').style.display = 'block';
+    document.getElementById('battery-indicator').style.display = 'block';
 
     // battery indicator
     battery = new ROSLIB.Topic({
