@@ -50,10 +50,16 @@
                 <li><code>roscore</code></li>
                 <li><code>roslaunch tbot2_launch tbot2.launch</code></li>
                 <li><code>roslaunch rosbridge_server rosbridge_websocket.launch</code></li>
+                <li><code>roslaunch tbot2_launch amcl_navigation.launch</code> 
+                  <ul>
+                    <li>Optional: add <code>map_file:=/path/to/map/file.yaml</code> to specify a map file</li>
+                    <li>This command will launch an <a href="http://wiki.ros.org/rviz">rviz</a> window. Tell the TurtleBot its current position by entering a 2D Pose Estimate.</li>
+                  </ul></li>
+                <li><code>rosrun robot_pose_publisher robot_pose_publisher</code></li>
               </ul>
             </li>
-            <li>On this page, enter IP Address and Port Number in the format <code>0.0.0.0:0000</code>. Port is typically <code>9090</code>.</li>
-            <li>Click "Enter"</li>
+            <li>On this webpage, enter IP Address and Port Number in the format <code>0.0.0.0:0000</code>. Default port is <code>9090</code>.</li>
+            <li>Click "Connect".</li>
             <li>If the status says "CONNECTED," you have successfully connected to the TurtleBot's webserver. Else, something has gone wrong.</li>
           </ol>
         </div>
