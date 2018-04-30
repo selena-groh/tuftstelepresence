@@ -86,7 +86,7 @@ function updateIP() {
   'use strict';
   
   url = document.getElementById("ip").value;
-  ip = "ws://" + url;
+  ip = "wss://" + url;
   connect = true;
   init();
 }
