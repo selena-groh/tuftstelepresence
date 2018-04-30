@@ -53,7 +53,7 @@ function init() {
     battery.subscribe(function(message) {
       var batteryLevel = message.battery/165 * 100;
       $('#battery').width(batteryLevel.toString() + '%');
-      $('#battery').html(Math.floor(batteryLevel.toString() + "%"));
+      $('#battery').html(Math.floor(batteryLevel).toString() + "%");
       battery.unsubscribe();
     });
     
