@@ -50,7 +50,7 @@
                 <li><code>roscore</code></li>
                 <li><code>roslaunch tbot2_launch tbot2.launch</code></li>
                 <li><code>roslaunch rosbridge_server rosbridge_websocket.launch</code></li>
-                <li><code>roslaunch tbot2_launch amcl_navigation.launch</code> 
+                <li><code>roslaunch tbot2_launch amcl_navigation.launch ssl:=true certfile:=/home/turtlebot/server_cert.pem keyfile:=/home/turtlebot/server_key.pem authenticate:=false</code> 
                   <ul>
                     <li>Optional: add <code>map_file:=/path/to/map/file.yaml</code> to specify a map file</li>
                     <li>This command will launch an <a href="http://wiki.ros.org/rviz">rviz</a> window. Tell the TurtleBot its current position by entering a 2D Pose Estimate.</li>
