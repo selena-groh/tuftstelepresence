@@ -1,6 +1,8 @@
 # Telepresence in a University Environment
 Selena Groh, Serena Thoma, and Trung Truong
+
 COMP50AIR: Autonomous Intelligent Robotics
+
 Tufts University
 
 ## Abstract
